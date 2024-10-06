@@ -44,9 +44,13 @@
 		synth.speak(msg)
 })
 	// Populate the voices dropdown
-voices = synth.getVoices();
-voicesDropdown.innerHTML = voices.map(voice => `<option value="${voice.name}">${voice.name}</option>`).join('');
-
+// voices = synth.getVoices();
+// voicesDropdown.innerHTML = voices.map(voice => `<option value="${voice.name}">${voice.name}</option>`).join('');
+synth.onvoiceschanged = function() {
+  voices = synth.getVoices();
+  voicesDropdown.innerHTML = voices.map(voice => `<option value="${voice.name}">${voice.name}</option>`).join('');
+};
+	
 // Handle the voices dropdown
 voicesDropdown.addEventListener('change', function() {
   msg.voice = voices.find(voice => voice.name === this.value);
